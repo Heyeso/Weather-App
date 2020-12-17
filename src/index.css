@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  position: relative;
+  font-family: 'Lato', sans-serif;
+}
+
+.contain {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color:rgb(155, 155, 155);
+  transition: background-color 0.5s ease-out;
+}
+.contain .inner {
+  text-align: center;
+  width: 100%;
+  max-width: calc(1920px * 0.3);
+  height: 100%;
+  max-height: calc(1080px * 0.8);
+  min-height: 568px;
+  display: flex;
+  flex-direction: column;
+}
+.contain .inner .searchLoc {
+  padding-top: 20%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contain .inner .searchLoc .search-box {
+  background-color: rgba(255, 255, 255, 0.849);
+  position: relative;
+  height: 60%;
+  width: 60%;
+  border: none;
+  overflow: hidden;
+  border-radius: 500px;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+.contain .inner .searchLoc .search-box input {
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 18px;
+  padding-left: 5%;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.contain .inner .searchLoc .search-box button {
+  cursor: pointer;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0);
+  color: #0000008c;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin: 0;
+  padding: 3px;
+  transform: translate(-50%, -50%);
+  transition: color 0.3s ease-out;
+}
+.contain .inner .searchLoc .search-box button:hover {
+  color: black;
+  transition: all 0.3s;
+}
+
+.contain .inner .searchLoc .search-box:focus-within {
+  background-color: rgb(255, 255, 255);
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  transform: scale(1.01);
+  transition: all 0.3s ease-out;
+}
+.contain .inner .searchLoc .search-box input,
+.contain .inner .searchLoc .search-box button {
+  border: none;
+}
+.contain .inner .searchLoc .search-box input:focus,
+.contain .inner .searchLoc .search-box input:active,
+.contain .inner .searchLoc .search-box button:focus,
+.contain .inner .searchLoc .search-box button:active {
+  outline: none;
+}
+.contain .inner .result {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  padding: 10% 0;
+}
+.contain .inner .result .location {
+  position: relative;
+  font-size: 42px;
+  align-self: flex-start;
+  justify-self: flex-start;
+  margin: 0;
+  width: 100%;
+}
+.contain .inner .result .weather{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.contain .inner .result .weather .desc{
+  font-size: 25px;
+  margin-bottom: 3%;
+  justify-self: start;
+}
+.contain .inner .result .weather img{
+  margin: 10% 0;
+  width: 30%;
+}
+.contain .inner .result .weather .degree{
+  font-size: 80px;
+}
+.error {
+  align-self: center;
+  justify-self: center;
+  padding: 50px 0;
+  font-size: 40px;
+}
+
+@media screen and (max-width: 576px) {
+  .contain .inner .searchLoc .search-box {
+    width: 80%;
+  }
+  .contain .inner .searchLoc .search-box input {
+    font-size: 16px;
+  }
+  .contain .inner .searchLoc .search-box button {
+    font-size: 20px;
+  }
+
+  .contain .inner .result .location {
+    font-size: 10vw;
+  }
+  .contain .inner .result .weather .desc{
+    font-size: 5vw;
+  }
+  .contain .inner .result .weather img{
+    width: 30%;
+  }
+  .contain .inner .result .weather .degree{
+    font-size: 20vw;
+  }
+}
