@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Search from './components/search'
 import Result from './components/result'
+import $ from "jquery";
 
 class App extends Component {
 
@@ -28,6 +29,7 @@ class App extends Component {
           error: err.message
         })
       });
+      $(".result").fadeOut(0)
     }
 
     // position = async () => {
@@ -44,6 +46,9 @@ class App extends Component {
       this.searchBtn("Baltimore")
     }
 
+    componentDidUpdate() {
+      $(".result").fadeIn(300)
+    }
 
     render() {
 
