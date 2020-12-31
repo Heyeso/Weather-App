@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import Search from './components/search'
 import Result from './components/result'
-import $ from "jquery";
 
 class App extends Component {
 
@@ -29,14 +28,11 @@ class App extends Component {
       .catch(err => {
         console.log(err)
       });
-
-      // $(".result").fadeIn(100)
     }
 
-    async componentDidMount() {
-      await navigator.geolocation.getCurrentPosition(
+     componentDidMount() {
+       navigator.geolocation.getCurrentPosition(
         position => {
-          console.log(position.coords.latitude + " " + position.coords.longitude)
           fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=18afdaa88da7616c414c4fe1c66cb408`)
           .then(response => response.json())
           .then(data => {
