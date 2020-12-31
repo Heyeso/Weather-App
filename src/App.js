@@ -9,54 +9,64 @@ class App extends Component {
         super(props)
         this.state = {
             text: "",
-            cData: {}
+            cData: {},
+            default : ""
         }
     }
 
     searchBtn = (input) => {
-      fetch(`http://api.openweathermap.org/data/2.5/weather?q=${input.toLowerCase()}&APPID=18afdaa88da7616c414c4fe1c66cb408`)
+      if(input === "")
+        input = this.state.default
+
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input.toLowerCase()}&APPID=18afdaa88da7616c414c4fe1c66cb408`)
       .then(response => response.json())
       .then(data => {
         this.setState({
           cData: data,
-          text: input,
-          first: false
+          text: input
         })
-        console.log(data)
       })
       .catch(err => {
-        this.setState({
-          error: err.message
-        })
+        console.log(err)
       });
-      $(".result").fadeOut(0)
+
+      // $(".result").fadeIn(100)
     }
 
-    // position = async () => {
-    //   await navigator.geolocation.getCurrentPosition(
-    //     position => this.setState({ 
-    //       latitude: position.coords.latitude, 
-    //       longitude: position.coords.longitude
-    //     }), 
-    //     err => console.log(err)
-    //   );
-    // }
-
-    componentDidMount() {
-      this.searchBtn("Baltimore")
-    }
-
-    componentDidUpdate() {
-      $(".result").fadeIn(300)
+    async componentDidMount() {
+      await navigator.geolocation.getCurrentPosition(
+        position => {
+          console.log(position.coords.latitude + " " + position.coords.longitude)
+          fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=18afdaa88da7616c414c4fe1c66cb408`)
+          .then(response => response.json())
+          .then(data => {
+            this.setState({
+              cData: data,
+              default : data.name
+            })
+          })
+          .catch(err => {
+            console.log(err)
+          });
+          // this.setState({ 
+          //   latitude: position.coords.latitude, 
+          //   longitude: position.coords.longitude
+          // })
+        }, 
+        err => console.log(err)
+      );
     }
 
     render() {
 
         return(
-          <div className="inner">
-            <Search btn={this.searchBtn}/>
-            {(this.state.cData.cod === 200) ? <Result data={this.state.cData}/> : <div className="error">{this.state.cData.message}</div>}
-        </div>
+          <React.Fragment>
+            <div className="bg"></div>
+            <div className="inner">
+              <Search btn={this.searchBtn}/>
+              {(this.state.cData.cod === 200) ? <Result data={this.state.cData}/> : <div className="error">{this.state.cData.message} :(</div>}
+            </div>
+          </React.Fragment>
         )
     }
 }

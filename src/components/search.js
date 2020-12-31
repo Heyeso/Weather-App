@@ -16,6 +16,9 @@ class Search extends Component {
     handleKeyPress = (event) => {
         if(event.key === 'Enter'){
              this.props.btn(this.state.text)
+             this.setState({
+                text: ""
+            })
         }
     }
 
@@ -23,8 +26,8 @@ class Search extends Component {
         return(
             <div className="searchLoc">
                 <div className="search-box">
-                    <input onKeyPress={this.handleKeyPress} value={this.state.text} onChange={this.textHandler} placeholder="Current Location" type="text" />
-                    <button onClick={() => this.props.btn(this.state.text)} ><i className="fas fa-search" /></button>
+                    <input onKeyPress={this.handleKeyPress} value={this.state.text} onChange={this.textHandler} placeholder="Location" type="text" />
+                    <button onClick={() => {this.setState({text: ""}); return this.props.btn(this.state.text)}} ><i className="fas fa-search" /></button>
                 </div>
             </div>
         )

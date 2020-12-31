@@ -20,6 +20,18 @@ body {
   background-color:rgb(155, 155, 155);
   transition: background-color 0.5s ease-out;
 }
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("./weatherAppbg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+}
 .contain .inner {
   text-align: center;
   width: 100%;

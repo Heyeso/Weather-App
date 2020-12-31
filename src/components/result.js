@@ -1,7 +1,8 @@
 import $ from "jquery";
 
+
 const Result = (props) => {
-    let temp = parseFloat(props.data.main.temp - 273.15).toFixed(2);
+    let temp = parseFloat(props.data.main.temp - 273.15).toFixed(0);
 
     if(temp > 25) {
         $(".contain").css({"background-color": "rgb(255, 94, 0)"})
@@ -49,12 +50,12 @@ const Result = (props) => {
     return(
         <div className="result">
             <h1 className="location">
-                {props.data.name + ", " + props.data.sys.country}
+                {props.data.name + " " + props.data.sys.country}
             </h1>
             <div className="weather">
                 <div className="desc">{desc}</div>
                 <img src={img} alt="Weather description" />
-                <div className="degree">{temp}<span>°</span>C</div>
+                <div className="degree">{temp}<span>°</span>c</div>
             </div>
         </div>
     )
